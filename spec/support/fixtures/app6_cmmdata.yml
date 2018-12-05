@@ -1,2 +1,2 @@
 dependencies:
-  - app7
+  app7: app7_cmmdata.yml

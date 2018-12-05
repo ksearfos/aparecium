@@ -10,12 +10,12 @@ module Aparecium
 
     # list of hashes' keys
     def dependencies
-      dependencies_with_paths.map(&:keys).flatten
+      dependencies_with_paths.keys
     end
 
     # array of hashes
     def dependencies_with_paths
-      @contents.fetch(DEPENDENCIES_KEY, [])
+      @contents.fetch(DEPENDENCIES_KEY, {})
     end
   end
 end

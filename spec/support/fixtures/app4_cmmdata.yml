@@ -1,6 +1,6 @@
 # example with other stuff in the file
 owner: myteam
 dependencies:
-  - app5
-  - app6
+  app5: app5_cmmdata.yml
+  app6: app6_cmmdata.yml
 location: http://github.com/something/else.git

@@ -1,4 +1,4 @@
 # non-recursive example
 # only dep is app5, the trail ends there
 dependencies:
-  - app5
+  app5: app5_cmmdata.yml
