@@ -1,4 +1,4 @@
-require 'aparecium/dependency_finder'
+require 'aparecium/data_file'
 
 module Aparecium
 end

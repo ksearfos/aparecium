@@ -1,7 +1,7 @@
 require 'yaml'
 
 module Aparecium
-  class DependencyFinder
+  class DataFile
     DEPENDENCIES_KEY = 'dependencies'.freeze
 
     attr_reader :dependencies

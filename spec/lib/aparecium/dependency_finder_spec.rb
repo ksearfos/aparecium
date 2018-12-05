@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Aparecium::DependencyFinder do
+RSpec.describe Aparecium::DataFile do
   subject { described_class.new(file) }
 
   describe '#dependencies' do
