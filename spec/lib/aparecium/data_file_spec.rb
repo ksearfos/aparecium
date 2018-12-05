@@ -24,14 +24,14 @@ RSpec.describe Aparecium::DataFile do
       let(:file) { FixtureHelper::NONRECURSIVE_FIXTURE }
 
       it 'is all of the listed dependencies' do
-        expect(subject.dependencies).to eq ['app5']
+        expect(subject.dependencies).to eq FixtureHelper::NONRECURSIVE_DEPS
       end
 
       context 'when there is also other stuff in the file' do
         let(:file) { FixtureHelper::FIXTURE_WITH_OTHER_STUFF }
 
         it 'is all of the listed dependencies' do
-          expect(subject.dependencies).to eq ['app5', 'app6']
+          expect(subject.dependencies).to eq FixtureHelper::DEPS_WITH_OTHER_STUFF
         end
       end
     end

@@ -4,11 +4,18 @@ module Aparecium
   class DataFile
     DEPENDENCIES_KEY = 'dependencies'.freeze
 
-    attr_reader :dependencies
-
     def initialize(file)
-      @contents = YAML.load(file.read)
-      @dependencies = (@contents && @contents[DEPENDENCIES_KEY]).to_a
+      @contents = YAML.load(file.read) || {}
+    end
+
+    # list of hashes' keys
+    def dependencies
+      dependencies_with_paths.map(&:keys).flatten
+    end
+
+    # array of hashes
+    def dependencies_with_paths
+      @contents.fetch(DEPENDENCIES_KEY, [])
     end
   end
 end
