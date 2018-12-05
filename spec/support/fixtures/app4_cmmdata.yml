@@ -1,0 +1,6 @@
+# example with other stuff in the file
+owner: myteam
+dependencies:
+  - app5
+  - app6
+location: http://github.com/something/else.git
