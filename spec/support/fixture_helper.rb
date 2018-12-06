@@ -1,31 +1,18 @@
 require 'pathname'
 
 module FixtureHelper
-  FIXTURES = Pathname.new(__FILE__).parent.join('fixtures')
-  NONRECURSIVE_FIXTURE = FIXTURES.join('app3_cmmdata.yml')
-  EMPTY_DEPS_FIXTURE = FIXTURES.join('app5_cmmdata.yml')
-  FIXTURE_WITH_OTHER_STUFF = FIXTURES.join('app4_cmmdata.yml')
-  EMPTY_FIXTURE = FIXTURES.join('empty_cmmdata.yml')
+  # fixtures
+  FIXTURES_DIR = Pathname.new(__FILE__).parent.join('fixtures')
+  NONRECURSIVE_FIXTURE = FIXTURES_DIR.join('app3_cmmdata.yml')
+  DEPS_WITH_DEPS_FIXTURE = FIXTURES_DIR.join('deps_with_deps_cmmdata.yml')
+  EMPTY_DEPS_FIXTURE = FIXTURES_DIR.join('app5_cmmdata.yml')
+  FIXTURE_WITH_OTHER_STUFF = FIXTURES_DIR.join('app4_cmmdata.yml')
+  EMPTY_FIXTURE = FIXTURES_DIR.join('empty_cmmdata.yml')
+  FIXTURE_WITH_ALL_DEPS = FIXTURES_DIR.join('app1_cmmdata.yml')
 
-  # class << self
-  #   def nonrecursive_data
-  #     load_fixture(NONRECURSIVE_FIXTURE)
-  #   end
-  #
-  #   def empty_data
-  #     load_fixture(EMPTY_DEPS_FIXTURE)
-  #   end
-  #
-  #   def full_data
-  #     load_fixture(FIXTURE_WITH_OTHER_STUFF)
-  #   end
-  #
-  #   def data
-  #     load_fixture('app1')
-  #   end
-  #
-  #   def load_fixture(app)
-  #     FIXTURES.join("#{app}_#{FIXTURE_FILENAME}").read
-  #   end
-  # end
+  # hard-coded dependencies
+  NONRECURSIVE_DEPS = %w(app5)
+  DEPS_WITH_OTHER_STUFF = %w(app5 app6)
+  DEPS_WITH_DEPS = %w(app3 app5)
+  ALL_DEPS = %w(app2 app3 app4 app5 app6 app7)
 end
