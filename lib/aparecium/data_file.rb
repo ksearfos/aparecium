@@ -1,6 +1,6 @@
 require 'yaml'
 
-module Aparecium
+class Aparecium
   class DataFile
     DEPENDENCIES_KEY = 'dependencies'.freeze
 

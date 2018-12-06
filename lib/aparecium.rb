@@ -1,29 +1,34 @@
 require 'aparecium/data_file'
 
-module Aparecium
+class Aparecium
   ROOT = Pathname.new(__FILE__).parent.parent
 
-  def self.all_dependencies_for(file)
-    recursive_dependencies_with_paths(file).keys
+  def initialize
+    @counter = 0
+    @dependencies = []
   end
 
-  def self.full_path(file)
-    ROOT.join('spec', 'support', 'fixtures', file)
-  end
-
-  def self.recursive_dependencies_with_paths(file)
-    file = Aparecium::DataFile.new(file)
+  def all_dependencies(file)
+    file = DataFile.new(file)
     immediate_deps = file.dependencies_with_paths
-    all = immediate_deps.reduce({}) do |all_deps, dep_with_path|
-      dep, path = *dep_with_path
-      dep_file = full_path(path)
 
-      if all_deps.has_key?(dep)
-        all_deps
-      else
-        all_deps[dep] = dep_file
-        all_deps.merge(recursive_dependencies_with_paths(dep_file))
-      end
+    # get list of all immediate dependencies
+    # for each of those, add all of its immediate dependencies
+    # keep going until we run out of dependencies
+    # and don't add the same dependency twice
+    immediate_deps.each do |name, file|
+      @counter += 1
+      next if @dependencies.include?(name) || @counter > 10
+      @dependencies << name
+      @dependencies += all_dependencies(full_path(file))
     end
+
+    @dependencies.uniq
+  end
+
+  private
+
+  def full_path(file)
+    ROOT.join('spec', 'support', 'fixtures', file)
   end
 end
